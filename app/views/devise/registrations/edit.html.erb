@@ -33,14 +33,15 @@
     <div class="mt-4">
       <%= f.submit "Update", class: 'btn btn-primary' %>
     </div>
+  </div>
   <% end %>
 
-# TODO Что-то сделал, из-за чего удалется профиль без запроса подтверждения
   <h3 class="mt-5">Cancel my account</h3>
 
 
   <div>Вам с нами плохо? <%= button_to "Удалить аккаунт",
-                                       registration_path(resource_name), method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: 'btn btn-outline-danger' %>
+                                       registration_path(resource_name), method: :delete,
+                                       form: { data: { turbo_confirm: 'Уверены? Если подтвердить действие, ваш профиль будет безвозвратно удалён!' } },
+                                       class: 'btn btn-outline-danger' %>
   </div>
-</div>
 <%= link_to "Back", :back %>
