@@ -1,2 +1,16 @@
-<div id="<%= dom_id event %>">
+<div class="col-sm-6 col-md-4">
+  <div class="thumbnail">
+
+    <%= content_tag 'div', '',
+                    class: 'event-background',
+                    style: "background-image: url(#{asset_path('event_thumb.jpg')})" %>
+
+    <div class="thumbnail-inner">
+      <div class="caption">
+        <h3><%= link_to event.title, event_path(event) %></h3>
+        <h6><small class="text-white"><%= event.datetime %></small></h6>
+        <div class="buffer-both text-white"><%= event.address %></div>
+      </div>
+    </div>
+  </div>
 </div>

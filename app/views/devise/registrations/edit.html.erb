@@ -1,0 +1,46 @@
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="col-md-4">
+    <div class="mt-4">
+      <%= f.label :email %><br/>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+    </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <div class="mt-4">
+      <%= f.label :password %>
+      <span id="passwordHelpInline" class="form-text">пароль должен быть от 6 символов.</span>
+      <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+    </div>
+
+
+    <div class="mt-1">
+      <%= f.label :password_confirmation %><br/>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+    </div>
+
+    <div class="mt-4">
+      <%= f.label :current_password %>
+      <span id="passwordHelpInline" class="form-text"> нужен текущий пароль для подтверждения</span>
+      <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control' %>
+    </div>
+
+    <div class="mt-4">
+      <%= f.submit "Update", class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+
+# TODO Что-то сделал, из-за чего удалется профиль без запроса подтверждения
+  <h3 class="mt-5">Cancel my account</h3>
+
+
+  <div>Вам с нами плохо? <%= button_to "Удалить аккаунт",
+                                       registration_path(resource_name), method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: 'btn btn-outline-danger' %>
+  </div>
+</div>
+<%= link_to "Back", :back %>

@@ -1,16 +1,42 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bbq3</title>
+    <title>BBQ3</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+
+
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="container">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <%= link_to "BBQ", root_path, class: "navbar-brand" %>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <% if user_signed_in? %>
+            <li><%= link_to 'Профиль', current_user, class: "nav-link active" %></li>
+            <li><%= button_to 'Выйти', destroy_user_session_path, method: :delete, class: "btn" %></li>
+          <% else %>
+            <li><%= link_to 'Войти', new_user_session_path, class: "nav-link active" %></li>
+            <li><%= link_to 'Зарегистрироваться', new_user_registration_path, class: "nav-link active" %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <% if flash[:notice].present? %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <%= notice %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% end %>
+
+  <%= yield %>
   </body>
 </html>

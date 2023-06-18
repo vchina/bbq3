@@ -16,7 +16,16 @@ class UsersController < ApplicationController
   end
   
   private
-  
+
+  # def set_user
+  #   if params[:id] == "sign_out"
+  #     sign_out(current_user) if user_signed_in?
+  #     redirect_to root_path
+  #   else
+  #     @user = User.find(params[:id])
+  #   end
+  # end
+
   def set_user
     @user = User.find(params[:id])
   end

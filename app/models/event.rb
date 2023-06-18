@@ -6,5 +6,4 @@ class Event < ApplicationRecord
   validates :datetime, presence: true
 
   belongs_to :user
-  validates :user, presence: true
 end
